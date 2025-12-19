@@ -230,8 +230,8 @@
         }
 
         function createPhotos() {
-            const geo = new THREE.PlaneGeometry(10, 8);
-            const borderGeo = new THREE.PlaneGeometry(11, 9); 
+            const geo = new THREE.PlaneGeometry(14, 14);
+            const borderGeo = new THREE.PlaneGeometry(15, 15); 
             const borderMat = new THREE.MeshBasicMaterial({ color: 0xFFD700 }); 
 
             for(let i=0; i<5; i++) {
@@ -368,8 +368,8 @@
             } else if (state === 'PHOTO') {
                 photoMeshes.forEach((mesh, i) => {
                     if (i === selectedIndex) {
-                        mesh.position.lerp(new THREE.Vector3(0, 0, 60), 0.1);
-                        mesh.scale.lerp(new THREE.Vector3(5, 5, 5), 0.1);
+                        mesh.position.lerp(new THREE.Vector3(0, 0, 15), 0.1);
+                        mesh.scale.lerp(new THREE.Vector3(10, 10, 10), 0.1);
                         mesh.lookAt(camera.position);
                         mesh.rotation.z = 0;
                     } else {
