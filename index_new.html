@@ -350,19 +350,20 @@
                 titleMesh.visible = false; starMesh.visible = false;
                 
                 const baseAngle = groupGold.rotation.y; 
-                const angleStep = (Math.PI * 2) / 5;
-                let bestIdx = 0; let maxZ = -999;
+                const angleStep = (Math.PI * 2) / photoMeshes.length;
 
-                photoMeshes.forEach((mesh, i) => {
-                    mesh.visible = true;
-                    const angle = baseAngle + i * angleStep;
-                    const x = Math.sin(angle) * CONFIG.photoOrbitRadius;
-                    const z = Math.cos(angle) * CONFIG.photoOrbitRadius;
-                    const y = Math.sin(time + i) * 3; 
+photoMeshes.forEach((mesh, i) => {
+    mesh.visible = true;
 
-                    mesh.position.lerp(new THREE.Vector3(x, y, z), 0.1);
-                    mesh.lookAt(camera.position);
+    const angle = photoRotation + i * angleStep;
 
+    const x = Math.sin(angle) * CONFIG.photoOrbitRadius;
+    const z = Math.cos(angle) * CONFIG.photoOrbitRadius;
+    const y = Math.sin(time + i) * 3;
+
+    mesh.position.lerp(new THREE.Vector3(x, y, z), 0.1);
+    mesh.lookAt(camera.position);
+    
                     if (z > maxZ) { maxZ = z; bestIdx = i; }
                     
                     if (z > 5) { 
