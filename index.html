@@ -43,11 +43,20 @@
         @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
         #camera-preview {
-            position: absolute; top: 15px; right: 15px;
-            width: 120px; height: 90px;
-            border: 2px solid rgba(255,0,0,0.5); 
-            transform: scaleX(-1); opacity: 0.6; border-radius: 8px;
-        }
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+    width: 320px;      /* TO HƠN */
+    height: 240px;     /* TO HƠN */
+
+    border: 3px solid rgba(255,0,0,0.8);
+    border-radius: 12px;
+
+    transform: scaleX(-1);
+    opacity: 0.9;
+    background: black;
+}
         
         #error-log { display: none; position: absolute; top: 0; left: 0; color: red; background: rgba(0,0,0,0.8); z-index: 999; padding: 10px; }
     </style>
@@ -64,7 +73,7 @@
 
     <div id="canvas-container"></div>
     <video class="input_video" style="display:none"></video>
-    <canvas id="camera-preview"></canvas>
+    <canvas id="camera-preview" width="640" height="480"></canvas>
 
     <script>
         // ==========================================
@@ -399,7 +408,9 @@
             hands.setOptions({ maxNumHands: 1, modelComplexity: 0, minDetectionConfidence: 0.5, minTrackingConfidence: 0.5 });
 
             hands.onResults(results => {
-                ctx.clearRect(0,0,100,75); ctx.drawImage(results.image, 0, 0, 100, 75);
+            const w = canvas.width;
+            const h = canvas.height;
+            ctx.clearRect(0, 0, w, h); ctx.drawImage(results.image, 0, 0, w, h);
 
                 if(results.multiHandLandmarks.length > 0) {
                     const lm = results.multiHandLandmarks[0];
